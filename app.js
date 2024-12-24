@@ -15,7 +15,9 @@ document.addEventListener("DOMContentLoaded", () => {
             originalData = formatData(data);
             filteredData = [...originalData];
             createTable(filteredData);
+            createChart(filteredData);
             setupFilters();
+            setupColumnToggle();
             setupSearch();
         })
         .catch(error => console.error("Error loading JSON file:", error));
@@ -24,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function formatData(data) {
         const formatted = [];
         for (const [paper, details] of Object.entries(data)) {
-            const { Title, Cancer, Risk, Medical_Actions_Management } = details;
+            const { Title, Cancer, Risk, Medical_Actions_Management, Authors } = details;
             const types = Cancer.Types || [];
             const risks = Risk.Percentages || {};
             const evidence = Cancer.Evidence || [];
@@ -35,7 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     Cancer: type,
                     Risk: risks[type] || "Unknown",
                     Management: Medical_Actions_Management[type]?.Recommendations?.join("; ") || "No recommendations",
-                    Evidence: Medical_Actions_Management[type]?.Evidence?.join("; ") || evidence.join("; ")
+                    Evidence: Medical_Actions_Management[type]?.Evidence?.join("; ") || evidence.join("; "),
+                    Authors: Authors?.join(", ") || "No authors listed"
                 });
             });
         }
@@ -48,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
         tbody.innerHTML = "";
 
         if (data.length === 0) {
-            tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;">No matching results</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;">No matching results</td></tr>`;
             return;
         }
 
@@ -60,8 +63,46 @@ document.addEventListener("DOMContentLoaded", () => {
                 <td class="risk">${item.Risk}</td>
                 <td class="management">${item.Management}</td>
                 <td class="evidence">${item.Evidence}</td>
+                <td class="authors">${item.Authors}</td>
             `;
             tbody.appendChild(row);
+        });
+    }
+
+    // Create chart
+    function createChart(data) {
+        const ctx = document.getElementById("riskChart").getContext("2d");
+        const labels = data.map(item => item.Cancer);
+        const risks = data.map(item => parseFloat(item.Risk.match(/\d+/)?.[0]) || 0);
+
+        if (window.riskChart) {
+            window.riskChart.destroy();
+        }
+
+        window.riskChart = new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: "Risk Percentage",
+                    data: risks,
+                    backgroundColor: "rgba(75, 192, 192, 0.2)",
+                    borderColor: "rgba(75, 192, 192, 1)",
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: "Risk Percentage"
+                        }
+                    }
+                }
+            }
         });
     }
 
@@ -81,6 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return paperMatch && cancerMatch;
             });
             createTable(filteredData);
+            createChart(filteredData);
         });
 
         clearBtn.addEventListener("click", () => {
@@ -89,6 +131,21 @@ document.addEventListener("DOMContentLoaded", () => {
             cancerFilter.value = "All";
             filteredData = [...originalData];
             createTable(filteredData);
+            createChart(filteredData);
+        });
+    }
+
+    // Setup column toggle
+    function setupColumnToggle() {
+        const toggles = document.querySelectorAll(".column-toggle");
+        toggles.forEach(toggle => {
+            toggle.addEventListener("change", () => {
+                const columnClass = toggle.dataset.column;
+                const isVisible = toggle.checked;
+                document.querySelectorAll(`.${columnClass}`).forEach(cell => {
+                    cell.style.display = isVisible ? "" : "none";
+                });
+            });
         });
     }
 
@@ -104,6 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 item.Title.toLowerCase().includes(searchTerm)
             );
             createTable(filteredData);
+            createChart(filteredData);
         });
     }
 });
