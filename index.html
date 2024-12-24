@@ -10,6 +10,7 @@
 <body>
     <h1>ATM Gene Risk and Management Dashboard</h1>
 
+    <!-- Filters Section -->
     <div id="filters">
         <label for="paperFilter">Filter by Paper:</label>
         <select id="paperFilter">
@@ -36,13 +37,26 @@
         <button id="clearBtn">Clear Filters</button>
     </div>
 
+    <!-- Column Selection Section -->
+    <div id="columnToggle">
+        <h3>Choose Columns to Display:</h3>
+        <label><input type="checkbox" id="toggleCancer" checked> Cancer Type</label>
+        <label><input type="checkbox" id="toggleRisk" checked> Risk</label>
+        <label><input type="checkbox" id="toggleManagement" checked> Management Recommendations</label>
+        <label><input type="checkbox" id="toggleEvidence" checked> Evidence Quoted</label>
+    </div>
+
+    <!-- Chart Section -->
     <canvas id="riskChart" width="800" height="400"></canvas>
+
+    <!-- Table Section -->
     <table id="riskTable">
         <thead>
             <tr>
-                <th>Cancer Type</th>
-                <th>Risk</th>
-                <th>Management Recommendations</th>
+                <th class="cancer">Cancer Type</th>
+                <th class="risk">Risk</th>
+                <th class="management">Management Recommendations</th>
+                <th class="evidence">Evidence Quoted</th>
             </tr>
         </thead>
         <tbody>
