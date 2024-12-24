@@ -207,4 +207,88 @@
             "Evidence": []
         },
         "Comments": [
-            "ATM
+            "ATM mutation carriers require tailored surveillance based on the specific cancer risks associated with the mutation subtype."
+        ],
+        "Therapeutic_Implications": {
+            "Implications": "Potential benefits of using targeted therapies like PARP inhibitors for ATM-related cancers.",
+            "Evidence": [
+                "Emerging data suggest that ATM-related cancers may respond to DNA repair-targeting therapies."
+            ]
+        }
+    },
+    "Paper_4": {
+        "Title": "Incidence of cancer in ATM mutation carriers",
+        "Authors": ["Deborah Thompson", "Silvia Duedal", "Jennifer Kirner"],
+        "Cancer": {
+            "Types": ["Breast Cancer", "Colorectal Cancer"],
+            "Evidence": [
+                "ATM carriers show a relative risk of breast cancer at 2.23 (95% CI: 1.16–4.28).",
+                "Colorectal cancer relative risk is estimated at 2.54 (95% CI: 1.06–6.09)."
+            ]
+        },
+        "Clinical_Additional_Phenotype": {
+            "Phenotype": "Increased incidence of breast and colorectal cancers",
+            "Evidence": [
+                "ATM mutation carriers are at moderate risk for specific cancers, with relative risks exceeding those of the general population."
+            ]
+        },
+        "Risk": {
+            "Percentages": {
+                "Breast Cancer": "2.23x increased risk for female ATM mutation carriers.",
+                "Colorectal Cancer": "2.54x increased risk for ATM mutation carriers."
+            },
+            "Evidence": [
+                "Risk estimates are based on analyses of familial cancer cohorts and population-based studies."
+            ]
+        },
+        "Medical_Actions_Management": {
+            "Breast_Cancer": {
+                "Recommendations": [
+                    "Annual mammograms and MRIs starting at age 30 for high-risk ATM mutation carriers."
+                ],
+                "Evidence": [
+                    "Screening programs tailored for moderate-risk individuals may benefit ATM carriers."
+                ]
+            },
+            "Colorectal_Cancer": {
+                "Recommendations": [
+                    "Colonoscopy every 5 years starting at age 40 for colorectal cancer risk management."
+                ],
+                "Evidence": [
+                    "Increased colorectal cancer risk warrants routine surveillance in carriers."
+                ]
+            }
+        },
+        "Therapeutic_Implications": {
+            "Implications": "Potential utility of targeted therapies for ATM mutation-related cancers.",
+            "Evidence": [
+                "Emerging research on DNA repair-targeting therapies indicates potential benefits for ATM mutation-associated malignancies."
+            ]
+        }
+    },
+    "Paper_5": {
+        "Title": "Meta-analysis of ATM mutations and cancer risks",
+        "Authors": ["Various Authors"],
+        "Cancer": {
+            "Types": ["Breast Cancer", "Lung Cancer"],
+            "Evidence": [
+                "Meta-analysis supports elevated breast cancer risk with a relative risk of 2.3.",
+                "Lung cancer risks associated with ATM are less definitive but show moderate elevation."
+            ]
+        },
+        "Clinical_Additional_Phenotype": {
+            "Phenotype": "Varied cancer risk spectrum in ATM mutation carriers",
+            "Evidence": [
+                "Elevated risks for specific cancer types are noted, with breast cancer being the most well-established."
+            ]
+        },
+        "Risk": {
+            "Percentages": {
+                "Breast Cancer": "2.3x increased risk for ATM mutation carriers.",
+                "Lung Cancer": "Moderate increase, specific risk estimates are not definitive."
+            },
+            "Evidence": [
+                "Risk estimates are derived from aggregated data across multiple familial and population-based studies."
+            ]
+        }
+    }
