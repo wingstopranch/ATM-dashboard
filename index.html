@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM Gene Risk and Management Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>ATM Gene Risk and Management Dashboard</h1>
+
+    <div id="filters">
+        <label for="paperFilter">Filter by Paper:</label>
+        <select id="paperFilter">
+            <option value="All">All</option>
+            <option value="Paper_1">Paper 1</option>
+            <option value="Paper_2">Paper 2</option>
+            <option value="Paper_3">Paper 3</option>
+        </select>
+
+        <label for="cancerFilter">Filter by Cancer Type:</label>
+        <select id="cancerFilter">
+            <option value="All">All</option>
+            <option value="Pancreatic Cancer">Pancreatic Cancer</option>
+            <option value="Breast Cancer">Breast Cancer</option>
+            <option value="Digestive Tract Cancers">Digestive Tract Cancers</option>
+            <option value="Colorectal Cancer">Colorectal Cancer</option>
+            <option value="Hematologic Malignancies">Hematologic Malignancies</option>
+        </select>
+
+        <label for="searchBar">Search:</label>
+        <input type="text" id="searchBar" placeholder="Search across papers...">
+        
+        <button id="filterBtn">Filter</button>
+        <button id="clearBtn">Clear Filters</button>
+    </div>
+
+    <canvas id="riskChart" width="800" height="400"></canvas>
+    <table id="riskTable">
+        <thead>
+            <tr>
+                <th>Cancer Type</th>
+                <th>Risk</th>
+                <th>Management Recommendations</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script src="app.js"></script>
+</body>
+</html>
