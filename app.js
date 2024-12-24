@@ -3,17 +3,15 @@ document.addEventListener("DOMContentLoaded", () => {
     let filteredData = [];
     window.riskChart = null;
 
-    // Load JSON data
-    fetch("ATM_annotations.json")
+    fetch("ATM annotations.json")
         .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
+            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
             return response.json();
         })
         .then(data => {
             originalData = formatData(data);
             filteredData = [...originalData];
+            populateFilters(data);
             createTable(filteredData);
             createChart(filteredData);
             setupFilters();
@@ -22,10 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch(error => console.error("Error loading JSON file:", error));
 
-    // Format JSON data
     function formatData(data) {
         const formatted = [];
-        for (const [paper, details] of Object.entries(data)) {
+        for (const [key, details] of Object.entries(data)) {
             const { Title, Cancer, Risk, Medical_Actions_Management, Authors } = details;
             const types = Cancer.Types || [];
             const risks = Risk.Percentages || {};
@@ -47,7 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return formatted;
     }
 
-    // Create table
     function createTable(data) {
         const tbody = document.querySelector("#riskTable tbody");
         tbody.innerHTML = "";
@@ -60,32 +56,29 @@ document.addEventListener("DOMContentLoaded", () => {
         data.forEach(item => {
             const row = document.createElement("tr");
             row.innerHTML = `
-                <td class="title">${item.Title}</td>
-                <td class="cancer">${item.Cancer}</td>
-                <td class="risk">${item.Risk}</td>
-                <td class="management">${item.Management}</td>
-                <td class="evidence-cancer">${item.EvidenceCancer}</td>
-                <td class="evidence-management">${item.EvidenceManagement}</td>
+                <td>${item.Title}</td>
+                <td>${item.Cancer}</td>
+                <td>${item.Risk}</td>
+                <td>${item.Management}</td>
+                <td>${item.EvidenceCancer}</td>
+                <td>${item.EvidenceManagement}</td>
                 <td class="authors">${item.Authors}</td>
             `;
             tbody.appendChild(row);
         });
     }
 
-    // Create chart
     function createChart(data) {
         const ctx = document.getElementById("riskChart").getContext("2d");
         const labels = data.map(item => item.Cancer);
         const risks = data.map(item => parseFloat(item.Risk.match(/\d+/)?.[0]) || 0);
 
-        if (window.riskChart) {
-            window.riskChart.destroy();
-        }
+        if (window.riskChart) window.riskChart.destroy();
 
         window.riskChart = new Chart(ctx, {
             type: "bar",
             data: {
-                labels: labels,
+                labels,
                 datasets: [{
                     label: "Risk Percentage",
                     data: risks,
@@ -97,72 +90,68 @@ document.addEventListener("DOMContentLoaded", () => {
             options: {
                 responsive: true,
                 scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: "Risk Percentage"
-                        }
-                    }
+                    y: { beginAtZero: true, title: { display: true, text: "Risk Percentage" } }
                 }
             }
         });
     }
 
-    // Setup filters
-    function setupFilters() {
+    function populateFilters(data) {
         const paperFilter = document.getElementById("paperFilter");
-        const cancerFilter = document.getElementById("cancerFilter");
-        const filterBtn = document.getElementById("filterBtn");
-        const clearBtn = document.getElementById("clearBtn");
+        Object.keys(data).forEach(key => {
+            const option = document.createElement("option");
+            option.value = key;
+            option.textContent = key;
+            paperFilter.appendChild(option);
+        });
 
-        filterBtn.addEventListener("click", () => {
-            const paperValue = paperFilter.value.trim();
-            const cancerValue = cancerFilter.value.trim();
-            filteredData = originalData.filter(item => {
-                const paperMatch = paperValue === "All" || item.Title.includes(paperValue);
-                const cancerMatch = cancerValue === "All" || item.Cancer === cancerValue;
-                return paperMatch && cancerMatch;
-            });
+        const cancerFilter = document.getElementById("cancerFilter");
+        const allTypes = [...new Set(originalData.map(item => item.Cancer))];
+        allTypes.forEach(type => {
+            const option = document.createElement("option");
+            option.value = type;
+            option.textContent = type;
+            cancerFilter.appendChild(option);
+        });
+    }
+
+    function setupFilters() {
+        document.getElementById("filterBtn").addEventListener("click", () => {
+            const paper = document.getElementById("paperFilter").value;
+            const cancer = document.getElementById("cancerFilter").value;
+
+            filteredData = originalData.filter(item =>
+                (paper === "All" || item.Title.includes(paper)) &&
+                (cancer === "All" || item.Cancer === cancer)
+            );
+
             createTable(filteredData);
             createChart(filteredData);
         });
 
-        clearBtn.addEventListener("click", () => {
-            document.getElementById("searchBar").value = "";
-            paperFilter.value = "All";
-            cancerFilter.value = "All";
+        document.getElementById("clearBtn").addEventListener("click", () => {
             filteredData = [...originalData];
             createTable(filteredData);
             createChart(filteredData);
         });
     }
 
-    // Setup column toggle
     function setupColumnToggle() {
-        const toggles = document.querySelectorAll(".column-toggle");
-        toggles.forEach(toggle => {
+        document.querySelectorAll(".column-toggle").forEach(toggle => {
             toggle.addEventListener("change", () => {
-                const columnClass = toggle.dataset.column;
-                const isVisible = toggle.checked;
-                document.querySelectorAll(`.${columnClass}`).forEach(cell => {
-                    cell.style.display = isVisible ? "" : "none";
+                const column = toggle.dataset.column;
+                document.querySelectorAll(`.${column}`).forEach(cell => {
+                    cell.style.display = toggle.checked ? "" : "none";
                 });
             });
         });
     }
 
-    // Setup search
     function setupSearch() {
-        const searchBar = document.getElementById("searchBar");
-        searchBar.addEventListener("input", () => {
-            const searchTerm = searchBar.value.trim().toLowerCase();
+        document.getElementById("searchBar").addEventListener("input", e => {
+            const term = e.target.value.toLowerCase();
             filteredData = originalData.filter(item =>
-                item.Cancer.toLowerCase().includes(searchTerm) ||
-                item.Management.toLowerCase().includes(searchTerm) ||
-                item.EvidenceCancer.toLowerCase().includes(searchTerm) ||
-                item.EvidenceManagement.toLowerCase().includes(searchTerm) ||
-                item.Title.toLowerCase().includes(searchTerm)
+                Object.values(item).some(value => value.toLowerCase().includes(term))
             );
             createTable(filteredData);
             createChart(filteredData);
