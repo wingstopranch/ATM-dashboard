@@ -15,6 +15,7 @@
     </header>
 
     <main>
+        <!-- Filter Section -->
         <div class="filters">
             <select id="paperFilter">
                 <option value="All">All Papers</option>
@@ -27,32 +28,37 @@
             <button id="clearBtn">Clear Filters</button>
         </div>
 
+        <!-- Column Toggle Section -->
         <div class="column-toggles">
             <label><input type="checkbox" class="column-toggle" data-column="authors" checked> Authors</label>
             <label><input type="checkbox" class="column-toggle" data-column="evidence-cancer" checked> Evidence for Cancer</label>
             <label><input type="checkbox" class="column-toggle" data-column="evidence-management" checked> Evidence for Management</label>
         </div>
 
+        <!-- Chart Section -->
         <div class="chart-container">
             <canvas id="riskChart"></canvas>
         </div>
 
-        <table id="riskTable">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Cancer Type</th>
-                    <th>Risk</th>
-                    <th>Management Recommendations</th>
-                    <th>Evidence for Cancer</th>
-                    <th>Evidence for Management</th>
-                    <th>Authors</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Rows will be dynamically added here -->
-            </tbody>
-        </table>
+        <!-- Table Section -->
+        <div class="table-container">
+            <table id="riskTable">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Cancer Type</th>
+                        <th>Risk</th>
+                        <th>Management Recommendations</th>
+                        <th>Evidence for Cancer</th>
+                        <th>Evidence for Management</th>
+                        <th>Authors</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
     </main>
 
     <script src="app.js"></script>
