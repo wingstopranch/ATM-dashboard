@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     Title,
                     Cancer: type,
                     Risk: risks[type] || "Unknown",
-                    Management: Medical_Actions_Management[type]?.Recommendations?.join("; ") || "No recommendations",
+                    Management: (Medical_Actions_Management[type]?.Recommendations?.join("; ") || "No recommendations"),
                     Evidence: Medical_Actions_Management[type]?.Evidence?.join("; ") || evidence.join("; "),
                     Authors: Authors?.join(", ") || "No authors listed"
                 });
