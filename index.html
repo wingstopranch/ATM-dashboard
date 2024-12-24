@@ -37,6 +37,16 @@
         <button id="clearBtn">Clear Filters</button>
     </div>
 
+    <!-- Column Toggle Section -->
+    <div id="columnToggle">
+        <label><input type="checkbox" class="column-toggle" data-column="authors" checked> Show Authors</label>
+        <label><input type="checkbox" class="column-toggle" data-column="management" checked> Show Management Recommendations</label>
+        <label><input type="checkbox" class="column-toggle" data-column="evidence" checked> Show Evidence Quoted</label>
+    </div>
+
+    <!-- Chart Section -->
+    <canvas id="riskChart" width="400" height="200"></canvas>
+
     <!-- Table Section -->
     <table id="riskTable">
         <thead>
@@ -46,6 +56,7 @@
                 <th class="risk">Risk</th>
                 <th class="management">Management Recommendations</th>
                 <th class="evidence">Evidence Quoted</th>
+                <th class="authors">Authors</th>
             </tr>
         </thead>
         <tbody>
