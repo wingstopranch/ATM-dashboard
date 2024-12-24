@@ -1,96 +1,45 @@
-/* General styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
 }
 
 header {
     background-color: #003366;
-    color: #ffffff;
-    padding: 1em;
+    color: white;
     text-align: center;
+    padding: 10px 0;
 }
 
-h1 {
-    margin: 0;
-}
-
-/* Controls */
-.controls {
+.filters, .column-toggles {
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding: 1em;
-    background-color: #e3f2fd;
-    border-bottom: 1px solid #ccc;
+    justify-content: center;
+    margin: 10px 0;
 }
 
-.filters {
-    display: flex;
-    align-items: center;
-    gap: 0.5em;
+.filters select, .filters input, .filters button {
+    margin: 0 5px;
+    padding: 5px;
 }
 
-.column-toggles {
-    display: flex;
-    align-items: center;
-    gap: 1em;
-}
-
-/* Chart */
-#riskChart {
-    margin: 1em auto;
-    max-width: 90%;
-    background-color: #ffffff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 1em;
-}
-
-/* Table */
-#riskTable {
-    width: 100%;
+table {
+    width: 90%;
+    margin: 20px auto;
     border-collapse: collapse;
-    margin: 1em auto;
-    background-color: #ffffff;
     border: 1px solid #ccc;
 }
 
-#riskTable thead {
-    background-color: #003366;
-    color: #ffffff;
-}
-
-#riskTable th, #riskTable td {
-    padding: 0.75em;
+th, td {
     border: 1px solid #ccc;
     text-align: left;
-    vertical-align: top;
+    padding: 10px;
 }
 
-#riskTable th {
-    text-transform: uppercase;
-    font-size: 0.9em;
+th {
+    background-color: #003366;
+    color: white;
 }
 
-#riskTable tbody tr:nth-child(odd) {
-    background-color: #f9f9f9;
-}
-
-#riskTable tbody tr:nth-child(even) {
-    background-color: #ffffff;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .controls {
-        flex-direction: column;
-        gap: 1em;
-    }
-
-    #riskTable {
-        font-size: 0.9em;
-    }
+.column-toggles label {
+    margin: 0 10px;
 }
