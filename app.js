@@ -5,11 +5,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Load JSON data
     fetch("ATM annotations.json")
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
         .then(data => {
             originalData = formatData(data);
             filteredData = [...originalData];
-            populateFilters(originalData);
             createTable(filteredData);
             createChart(filteredData);
             setupFilters();
@@ -41,28 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
         return formatted;
-    }
-
-    // Populate filters
-    function populateFilters(data) {
-        const paperFilter = document.getElementById("paperFilter");
-        const cancerFilter = document.getElementById("cancerFilter");
-        const uniquePapers = [...new Set(data.map(item => item.Title))];
-        const uniqueCancers = [...new Set(data.map(item => item.Cancer))];
-
-        uniquePapers.forEach(paper => {
-            const option = document.createElement("option");
-            option.value = paper;
-            option.textContent = paper;
-            paperFilter.appendChild(option);
-        });
-
-        uniqueCancers.forEach(cancer => {
-            const option = document.createElement("option");
-            option.value = cancer;
-            option.textContent = cancer;
-            cancerFilter.appendChild(option);
-        });
     }
 
     // Create table
