@@ -8,61 +8,55 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>ATM Gene Risk and Management Dashboard</h1>
-
-    <!-- Filters Section -->
-    <div id="filters">
-        <label for="paperFilter">Filter by Paper:</label>
-        <select id="paperFilter">
-            <option value="All">All</option>
-            <option value="Paper_1">Paper 1</option>
-            <option value="Paper_2">Paper 2</option>
-            <option value="Paper_3">Paper 3</option>
-        </select>
-
-        <label for="cancerFilter">Filter by Cancer Type:</label>
-        <select id="cancerFilter">
-            <option value="All">All</option>
-            <option value="Pancreatic Cancer">Pancreatic Cancer</option>
-            <option value="Breast Cancer">Breast Cancer</option>
-            <option value="Digestive Tract Cancers">Digestive Tract Cancers</option>
-            <option value="Colorectal Cancer">Colorectal Cancer</option>
-            <option value="Hematologic Malignancies">Hematologic Malignancies</option>
-        </select>
-
-        <label for="searchBar">Search:</label>
-        <input type="text" id="searchBar" placeholder="Search...">
-        
-        <button id="filterBtn">Filter</button>
-        <button id="clearBtn">Clear Filters</button>
-    </div>
-
-    <!-- Column Toggle Section -->
-    <div id="columnToggle">
-        <label><input type="checkbox" class="column-toggle" data-column="authors" checked> Show Authors</label>
-        <label><input type="checkbox" class="column-toggle" data-column="management" checked> Show Management Recommendations</label>
-        <label><input type="checkbox" class="column-toggle" data-column="evidence" checked> Show Evidence Quoted</label>
-    </div>
-
-    <!-- Chart Section -->
-    <canvas id="riskChart" width="400" height="200"></canvas>
-
-    <!-- Table Section -->
-    <table id="riskTable">
-        <thead>
-            <tr>
-                <th class="title">Title</th>
-                <th class="cancer">Cancer Type</th>
-                <th class="risk">Risk</th>
-                <th class="management">Management Recommendations</th>
-                <th class="evidence">Evidence Quoted</th>
-                <th class="authors">Authors</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-
+    <header>
+        <h1>ATM Gene Risk and Management Dashboard</h1>
+    </header>
+    <section>
+        <div class="filters">
+            <select id="paperFilter">
+                <option value="All">All Papers</option>
+                <option value="ATM mutations in hereditary pancreatic cancer patients">ATM mutations in hereditary pancreatic cancer patients</option>
+                <option value="Rare variants in the ATM gene and risk of breast cancer">Rare variants in the ATM gene and risk of breast cancer</option>
+                <option value="Health risks for ataxia-telangiectasia mutated heterozygotes">Health risks for ataxia-telangiectasia mutated heterozygotes</option>
+            </select>
+            <select id="cancerFilter">
+                <option value="All">All Cancer Types</option>
+                <option value="Pancreatic Cancer">Pancreatic Cancer</option>
+                <option value="Breast Cancer">Breast Cancer</option>
+                <option value="Hematologic Malignancies">Hematologic Malignancies</option>
+                <option value="Colorectal Cancer">Colorectal Cancer</option>
+            </select>
+            <input type="text" id="searchBar" placeholder="Search...">
+            <button id="filterBtn">Filter</button>
+            <button id="clearBtn">Clear Filters</button>
+        </div>
+        <div class="column-toggles">
+            <label><input type="checkbox" class="column-toggle" data-column="authors" checked> Authors</label>
+            <label><input type="checkbox" class="column-toggle" data-column="evidence-cancer" checked> Evidence for Cancer</label>
+            <label><input type="checkbox" class="column-toggle" data-column="evidence-management" checked> Evidence for Management</label>
+        </div>
+    </section>
+    <section>
+        <canvas id="riskChart"></canvas>
+    </section>
+    <section>
+        <table id="riskTable">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Cancer Type</th>
+                    <th>Risk</th>
+                    <th>Management Recommendations</th>
+                    <th>Evidence for Cancer</th>
+                    <th>Evidence for Management</th>
+                    <th class="authors">Authors</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Populated by JavaScript -->
+            </tbody>
+        </table>
+    </section>
     <script src="app.js"></script>
 </body>
 </html>
