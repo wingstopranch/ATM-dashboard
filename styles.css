@@ -1,52 +1,68 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f8f9fa;
-    color: #212529;
+    margin: 20px;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
 }
 
 h1 {
     text-align: center;
-    margin: 20px;
-    font-size: 2em;
+    margin-bottom: 20px;
 }
 
-#filters {
+#filters, #columnToggle {
     display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin: 20px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
-#filters input, #filters select {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+#filters label, #columnToggle label {
+    margin-right: 10px;
 }
 
-#filters button {
-    padding: 8px 15px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
+#filters input, #filters select, #filters button {
+    margin-right: 10px;
 }
 
-#riskTable {
-    width: 90%;
-    margin: 20px auto;
+table {
+    width: 100%;
     border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
 }
 
-#riskTable th, #riskTable td {
+table th, table td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 10px;
     text-align: left;
 }
 
-#riskTable th {
-    background-color: #343a40;
+table th {
+    background-color: #0073e6;
     color: white;
+}
+
+table td {
+    word-wrap: break-word;
+    max-width: 200px;
+}
+
+canvas {
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #0073e6;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #005bb5;
 }
