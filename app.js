@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const cancerEvidence = Cancer.Evidence || [];
 
             types.forEach(type => {
-                const management = Medical_Actions_Management[type] || {};
+                const management = Medical_Actions_Management[type.replace(/ /g, "_")] || {};
                 formatted.push({
                     Title,
                     Cancer: type,
