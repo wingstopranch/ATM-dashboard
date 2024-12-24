@@ -1,72 +1,69 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
-    line-height: 1.6;
-    background-color: #f4f4f4;
-    color: #333;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-h1 {
+header {
+    background-color: #003366;
+    color: white;
+    padding: 10px;
     text-align: center;
-    margin-bottom: 20px;
 }
 
-#filters, #columnToggle {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+section {
+    margin: 20px;
+    padding: 10px;
+}
+
+.filters, .column-toggles {
     margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
     flex-wrap: wrap;
 }
 
-#filters label, #columnToggle label {
-    margin-right: 10px;
+button {
+    padding: 8px 12px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-#filters input, #filters select, #filters button {
-    margin-right: 10px;
+button:hover {
+    background-color: #0056b3;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-    background: white;
 }
 
-table th, table td {
-    border: 1px solid #ddd; /* Thin grid lines */
-    padding: 10px;
+th, td {
     text-align: left;
+    padding: 8px;
+    border: 1px solid #ccc;
 }
 
-table th {
-    background-color: #0073e6;
+th {
+    background-color: #003366;
     color: white;
+    position: sticky;
+    top: 0;
 }
 
-table td {
-    word-wrap: break-word;
-    max-width: 200px;
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
 }
 
 canvas {
-    margin-bottom: 20px;
-}
-
-button {
-    background-color: #0073e6;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-button:hover {
-    background-color: #005bb5;
-}
-
-.hidden {
-    display: none !important;
+    width: 100%;
+    max-height: 400px;
 }
