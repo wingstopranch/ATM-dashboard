@@ -11,20 +11,13 @@
     <header>
         <h1>ATM Gene Risk and Management Dashboard</h1>
     </header>
-    <section>
+    <div class="controls">
         <div class="filters">
             <select id="paperFilter">
                 <option value="All">All Papers</option>
-                <option value="ATM mutations in hereditary pancreatic cancer patients">ATM mutations in hereditary pancreatic cancer patients</option>
-                <option value="Rare variants in the ATM gene and risk of breast cancer">Rare variants in the ATM gene and risk of breast cancer</option>
-                <option value="Health risks for ataxia-telangiectasia mutated heterozygotes">Health risks for ataxia-telangiectasia mutated heterozygotes</option>
             </select>
             <select id="cancerFilter">
                 <option value="All">All Cancer Types</option>
-                <option value="Pancreatic Cancer">Pancreatic Cancer</option>
-                <option value="Breast Cancer">Breast Cancer</option>
-                <option value="Hematologic Malignancies">Hematologic Malignancies</option>
-                <option value="Colorectal Cancer">Colorectal Cancer</option>
             </select>
             <input type="text" id="searchBar" placeholder="Search...">
             <button id="filterBtn">Filter</button>
@@ -35,28 +28,24 @@
             <label><input type="checkbox" class="column-toggle" data-column="evidence-cancer" checked> Evidence for Cancer</label>
             <label><input type="checkbox" class="column-toggle" data-column="evidence-management" checked> Evidence for Management</label>
         </div>
-    </section>
-    <section>
-        <canvas id="riskChart"></canvas>
-    </section>
-    <section>
-        <table id="riskTable">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Cancer Type</th>
-                    <th>Risk</th>
-                    <th>Management Recommendations</th>
-                    <th>Evidence for Cancer</th>
-                    <th>Evidence for Management</th>
-                    <th class="authors">Authors</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Populated by JavaScript -->
-            </tbody>
-        </table>
-    </section>
+    </div>
+    <canvas id="riskChart"></canvas>
+    <table id="riskTable">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Cancer Type</th>
+                <th>Risk</th>
+                <th>Management Recommendations</th>
+                <th>Evidence for Cancer</th>
+                <th>Evidence for Management</th>
+                <th class="authors">Authors</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be dynamically added here -->
+        </tbody>
+    </table>
     <script src="app.js"></script>
 </body>
 </html>
