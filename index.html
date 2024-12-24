@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,14 +7,11 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
     <header>
         <h1>ATM Gene Risk and Management Dashboard</h1>
     </header>
-
     <main>
-        <!-- Filter Section -->
         <div class="filters">
             <select id="paperFilter">
                 <option value="All">All Papers</option>
@@ -23,45 +19,33 @@
             <select id="cancerFilter">
                 <option value="All">All Cancer Types</option>
             </select>
-            <input type="text" id="searchBar" placeholder="Search...">
             <button id="filterBtn">Filter</button>
             <button id="clearBtn">Clear Filters</button>
+            <input type="text" id="searchBar" placeholder="Search">
         </div>
-
-        <!-- Column Toggle Section -->
-        <div class="column-toggles">
-            <label><input type="checkbox" class="column-toggle" data-column="authors" checked> Authors</label>
-            <label><input type="checkbox" class="column-toggle" data-column="evidence-cancer" checked> Evidence for Cancer</label>
-            <label><input type="checkbox" class="column-toggle" data-column="evidence-management" checked> Evidence for Management</label>
-        </div>
-
-        <!-- Chart Section -->
         <div class="chart-container">
             <canvas id="riskChart"></canvas>
         </div>
-
-        <!-- Table Section -->
-        <div class="table-container">
-            <table id="riskTable">
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Cancer Type</th>
-                        <th>Risk</th>
-                        <th>Management Recommendations</th>
-                        <th>Evidence for Cancer</th>
-                        <th>Evidence for Management</th>
-                        <th>Authors</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Rows will be dynamically added here -->
-                </tbody>
-            </table>
+        <div class="toggle-columns">
+            <label><input type="checkbox" class="column-toggle" data-column="management" checked> Management Recommendations</label>
+            <label><input type="checkbox" class="column-toggle" data-column="evidence-cancer" checked> Evidence for Cancer</label>
+            <label><input type="checkbox" class="column-toggle" data-column="evidence-management" checked> Evidence for Management</label>
         </div>
+        <table id="riskTable">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Cancer Type</th>
+                    <th>Risk</th>
+                    <th class="management">Management Recommendations</th>
+                    <th class="evidence-cancer">Evidence for Cancer</th>
+                    <th class="evidence-management">Evidence for Management</th>
+                    <th>Authors</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
     </main>
-
     <script src="app.js"></script>
 </body>
-
 </html>
