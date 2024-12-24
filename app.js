@@ -1,3 +1,4 @@
+// JavaScript (app.js)
 document.addEventListener("DOMContentLoaded", () => {
     let originalData = [];
     let filteredData = [];
@@ -29,15 +30,17 @@ document.addEventListener("DOMContentLoaded", () => {
             const { Title, Cancer, Risk, Medical_Actions_Management, Authors } = details;
             const types = Cancer.Types || [];
             const risks = Risk.Percentages || {};
-            const evidence = Cancer.Evidence || [];
+            const cancerEvidence = Cancer.Evidence || [];
 
             types.forEach(type => {
+                const management = Medical_Actions_Management[type] || {};
                 formatted.push({
                     Title,
                     Cancer: type,
                     Risk: risks[type] || "Unknown",
-                    Management: (Medical_Actions_Management[type]?.Recommendations?.join("; ") || "No recommendations"),
-                    Evidence: Medical_Actions_Management[type]?.Evidence?.join("; ") || evidence.join("; "),
+                    Management: management.Recommendations?.join("; ") || "No recommendations",
+                    EvidenceCancer: cancerEvidence.join("; ") || "No evidence provided",
+                    EvidenceManagement: management.Evidence?.join("; ") || "No evidence provided",
                     Authors: Authors?.join(", ") || "No authors listed"
                 });
             });
@@ -51,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
         tbody.innerHTML = "";
 
         if (data.length === 0) {
-            tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;">No matching results</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;">No matching results</td></tr>`;
             return;
         }
 
@@ -62,7 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 <td class="cancer">${item.Cancer}</td>
                 <td class="risk">${item.Risk}</td>
                 <td class="management">${item.Management}</td>
-                <td class="evidence">${item.Evidence}</td>
+                <td class="evidence-cancer">${item.EvidenceCancer}</td>
+                <td class="evidence-management">${item.EvidenceManagement}</td>
                 <td class="authors">${item.Authors}</td>
             `;
             tbody.appendChild(row);
@@ -157,7 +161,8 @@ document.addEventListener("DOMContentLoaded", () => {
             filteredData = originalData.filter(item =>
                 item.Cancer.toLowerCase().includes(searchTerm) ||
                 item.Management.toLowerCase().includes(searchTerm) ||
-                item.Evidence.toLowerCase().includes(searchTerm) ||
+                item.EvidenceCancer.toLowerCase().includes(searchTerm) ||
+                item.EvidenceManagement.toLowerCase().includes(searchTerm) ||
                 item.Title.toLowerCase().includes(searchTerm)
             );
             createTable(filteredData);
