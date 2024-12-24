@@ -26,19 +26,21 @@ document.addEventListener("DOMContentLoaded", () => {
     function formatData(data) {
         const formatted = [];
         for (const [paper, details] of Object.entries(data)) {
-            const { Cancer, Risk, Medical_Actions_Management, Evidence } = details;
+            const { Title, Authors, Cancer, Risk, Medical_Actions_Management } = details;
             const types = Cancer.Types || [];
             const risks = Risk.Percentages || {};
-            const recommendations = Medical_Actions_Management.Recommendations || [];
-            const evidence = Evidence || "No evidence quoted"; // New field for Evidence
+            const cancerEvidence = Cancer.Evidence || [];
+            const recommendations = Medical_Actions_Management || {};
 
             types.forEach(type => {
                 formatted.push({
                     Paper: paper,
+                    Title,
+                    Authors: Authors.join(", "),
                     Cancer: type,
                     Risk: risks[type] || "Unknown",
-                    Management: recommendations.join("; "),
-                    Evidence: evidence // Include Evidence field
+                    Management: recommendations[type]?.Recommendations?.join("; ") || "No recommendations",
+                    Evidence: recommendations[type]?.Evidence?.join("; ") || cancerEvidence.join("; ")
                 });
             });
         }
@@ -51,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
         tbody.innerHTML = "";
 
         if (data.length === 0) {
-            tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;">No matching results</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;">No matching results</td></tr>`;
             return;
         }
 
@@ -59,9 +61,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const row = document.createElement("tr");
             row.innerHTML = `
                 <td class="cancer">${item.Cancer}</td>
+                <td class="title">${item.Title}</td>
                 <td class="risk">${item.Risk}</td>
                 <td class="management">${item.Management}</td>
                 <td class="evidence">${item.Evidence}</td>
+                <td class="authors">${item.Authors}</td>
             `;
             tbody.appendChild(row);
         });
@@ -141,7 +145,9 @@ document.addEventListener("DOMContentLoaded", () => {
             filteredData = originalData.filter(item =>
                 item.Cancer.toLowerCase().includes(searchTerm) ||
                 item.Management.toLowerCase().includes(searchTerm) ||
-                item.Evidence.toLowerCase().includes(searchTerm)
+                item.Evidence.toLowerCase().includes(searchTerm) ||
+                item.Title.toLowerCase().includes(searchTerm) ||
+                item.Authors.toLowerCase().includes(searchTerm)
             );
             createTable(filteredData);
             createChart(filteredData);
@@ -150,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Setup column toggle
     function setupColumnToggle() {
-        const columns = ["Cancer", "Risk", "Management", "Evidence"];
+        const columns = ["Cancer", "Title", "Risk", "Management", "Evidence", "Authors"];
         columns.forEach(column => {
             const checkbox = document.getElementById(`toggle${column}`);
             checkbox.addEventListener("change", () => {
