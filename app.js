@@ -4,13 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
     window.riskChart = null;
 
     // Load JSON data
-    fetch("ATM annotations.json")
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
+    fetch("ATM_annotations.json")
+        .then(response => response.json())
         .then(data => {
             originalData = formatData(data);
             filteredData = [...originalData];
@@ -22,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch(error => console.error("Error loading JSON file:", error));
 
-    // Format JSON data
     function formatData(data) {
         const formatted = [];
         for (const [paper, details] of Object.entries(data)) {
@@ -47,7 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return formatted;
     }
 
-    // Create table
     function createTable(data) {
         const tbody = document.querySelector("#riskTable tbody");
         tbody.innerHTML = "";
@@ -72,7 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Create chart
     function createChart(data) {
         const ctx = document.getElementById("riskChart").getContext("2d");
         const labels = data.map(item => item.Cancer);
@@ -109,7 +101,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Setup filters
     function setupFilters() {
         const paperFilter = document.getElementById("paperFilter");
         const cancerFilter = document.getElementById("cancerFilter");
@@ -138,7 +129,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Setup column toggle
     function setupColumnToggle() {
         const toggles = document.querySelectorAll(".column-toggle");
         toggles.forEach(toggle => {
@@ -152,7 +142,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Setup search
     function setupSearch() {
         const searchBar = document.getElementById("searchBar");
         searchBar.addEventListener("input", () => {
