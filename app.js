@@ -33,20 +33,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             types.forEach(type => {
                 const management = Medical_Actions_Management[type] || {};
-                const recommendations = management.Recommendations?.length
-                    ? management.Recommendations.join("; ")
-                    : "No recommendations";
-                const evidenceManagement = management.Evidence?.length
-                    ? management.Evidence.join("; ")
-                    : "No evidence provided";
-
                 formatted.push({
                     Title,
                     Cancer: type,
                     Risk: risks[type] || "Unknown",
-                    Management: recommendations,
+                    Management: management.Recommendations?.join("; ") || "No recommendations",
                     EvidenceCancer: cancerEvidence.join("; ") || "No evidence provided",
-                    EvidenceManagement: evidenceManagement,
+                    EvidenceManagement: management.Evidence?.join("; ") || "No evidence provided",
                     Authors: Authors?.join(", ") || "No authors listed"
                 });
             });
