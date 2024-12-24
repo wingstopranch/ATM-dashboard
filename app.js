@@ -1,4 +1,3 @@
-// JavaScript (app.js)
 document.addEventListener("DOMContentLoaded", () => {
     let originalData = [];
     let filteredData = [];
