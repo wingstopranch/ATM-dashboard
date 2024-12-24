@@ -31,36 +31,21 @@
         </select>
 
         <label for="searchBar">Search:</label>
-        <input type="text" id="searchBar" placeholder="Search across papers...">
+        <input type="text" id="searchBar" placeholder="Search...">
         
         <button id="filterBtn">Filter</button>
         <button id="clearBtn">Clear Filters</button>
     </div>
 
-    <!-- Column Selection Section -->
-    <div id="columnToggle">
-        <h3>Choose Columns to Display:</h3>
-        <label><input type="checkbox" id="toggleCancer" checked> Cancer Type</label>
-        <label><input type="checkbox" id="toggleTitle" checked> Title</label>
-        <label><input type="checkbox" id="toggleRisk" checked> Risk</label>
-        <label><input type="checkbox" id="toggleManagement" checked> Management Recommendations</label>
-        <label><input type="checkbox" id="toggleEvidence" checked> Evidence Quoted</label>
-        <label><input type="checkbox" id="toggleAuthors" checked> Authors</label>
-    </div>
-
-    <!-- Chart Section -->
-    <canvas id="riskChart" width="800" height="400"></canvas>
-
     <!-- Table Section -->
     <table id="riskTable">
         <thead>
             <tr>
-                <th class="cancer">Cancer Type</th>
                 <th class="title">Title</th>
+                <th class="cancer">Cancer Type</th>
                 <th class="risk">Risk</th>
                 <th class="management">Management Recommendations</th>
                 <th class="evidence">Evidence Quoted</th>
-                <th class="authors">Authors</th>
             </tr>
         </thead>
         <tbody>
