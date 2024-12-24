@@ -1,5 +1,15 @@
 {
     "Paper_1": {
+        "Title": "ATM mutations in hereditary pancreatic cancer patients",
+        "Authors": [
+            "Nicholas J. Roberts",
+            "Yuchen Jiao",
+            "Jun Yu",
+            "Levy Kopelovich",
+            "Gloria M. Petersen",
+            "Melissa Bondy",
+            "Steven Gallinger"
+        ],
         "Cancer": {
             "Types": [
                 "Pancreatic Cancer",
@@ -33,14 +43,18 @@
             ]
         },
         "Medical_Actions_Management": {
-            "Recommendations": [
-                "Risk assessment and genetic counseling for families with ATM mutations.",
-                "Targeted screening for pancreatic and breast cancers."
-            ],
-            "Evidence": [
-                "The identification of deleterious ATM mutations in probands has substantial implications for risk assessment and surveillance in other family members.",
-                "Breast cancer surveillance protocols, including MRI screening, should be considered for ATM mutation carriers."
-            ]
+            "Pancreatic_Cancer": {
+                "Recommendations": [],
+                "Evidence": ["No evidence provided for specific management."]
+            },
+            "Breast_Cancer": {
+                "Recommendations": [
+                    "Annual MRIs for breast cancer starting at age 30 for high-risk ATM carriers."
+                ],
+                "Evidence": [
+                    "MRI screening protocols have been effective in early detection for ATM mutation carriers."
+                ]
+            }
         },
         "Frequency_of_Management": {
             "Frequency": "Annual screening or as per specific cancer protocols",
@@ -72,11 +86,21 @@
         }
     },
     "Paper_2": {
+        "Title": "Rare variants in the ATM gene and risk of breast cancer",
+        "Authors": [
+            "David E. Goldgar",
+            "Sue Healey",
+            "James G. Dowty",
+            "Leonard Da Silva",
+            "Xiaoqing Chen",
+            "Amanda B. Spurdle",
+            "Mary Beth Terry"
+        ],
         "Cancer": {
             "Types": ["Breast Cancer"],
             "Evidence": [
                 "Recent studies have confirmed that some specific variants in the ATM gene are associated with increased breast cancer risk.",
-                "The risk estimates from this study suggest that women carrying the pathogenic variant, ATM c.7271T>G, or truncating mutations demonstrate a significantly increased risk of breast cancer with a penetrance similar to BRCA2 mutations."
+                "The risk estimates from this study suggest that women carrying the pathogenic variant, ATM c.7271T>G, or truncating mutations demonstrate a significantly increased risk of breast cancer."
             ]
         },
         "Clinical_Additional_Phenotype": {
@@ -94,14 +118,16 @@
             ]
         },
         "Medical_Actions_Management": {
-            "Recommendations": [
-                "Enhanced breast cancer screening for carriers of high-risk ATM variants.",
-                "Consideration of risk-reducing mastectomy for specific high-risk individuals."
-            ],
-            "Evidence": [
-                "Carriers of pathogenic ATM variants may require intensified surveillance similar to BRCA2 carriers.",
-                "Annual MRIs and mammograms are recommended for high-risk ATM mutation carriers starting at age 30."
-            ]
+            "Breast_Cancer": {
+                "Recommendations": [
+                    "Enhanced breast cancer screening for carriers of high-risk ATM variants.",
+                    "Consideration of risk-reducing mastectomy for specific high-risk individuals."
+                ],
+                "Evidence": [
+                    "Carriers of pathogenic ATM variants may require intensified surveillance similar to BRCA2 carriers.",
+                    "Annual MRIs and mammograms are recommended for high-risk ATM mutation carriers starting at age 30."
+                ]
+            }
         },
         "Frequency_of_Management": {
             "Frequency": "Annual MRIs and mammograms",
@@ -124,6 +150,16 @@
         }
     },
     "Paper_3": {
+        "Title": "Health risks for ataxia-telangiectasia mutated heterozygotes",
+        "Authors": [
+            "N.J.H. van Os",
+            "N. Roeleveld",
+            "C.M.R. Weemaes",
+            "M.C.J. Jongmans",
+            "G.O. Janssens",
+            "A.M.R. Taylor",
+            "N. Hoogerbrugge"
+        ],
         "Cancer": {
             "Types": ["Breast Cancer", "Digestive Tract Cancers", "Colorectal Cancer"],
             "Evidence": [
@@ -142,14 +178,22 @@
             ]
         },
         "Medical_Actions_Management": {
-            "Recommendations": [
-                "Breast cancer screening starting at 25 years for high-risk ATM mutation carriers.",
-                "Colonoscopy every 5 years starting at age 40 for colorectal cancer risk management."
-            ],
-            "Evidence": [
-                "All female ATM c.7271T>G mutation carriers from 25 years of age onwards should be offered intensified surveillance programs for breast cancer.",
-                "Colonoscopy surveillance is recommended for colorectal cancer risk in ATM mutation carriers."
-            ]
+            "Breast_Cancer": {
+                "Recommendations": [
+                    "Breast cancer screening starting at 25 years for high-risk ATM mutation carriers."
+                ],
+                "Evidence": [
+                    "All female ATM c.7271T>G mutation carriers from 25 years of age onwards should be offered intensified surveillance programs for breast cancer."
+                ]
+            },
+            "Colorectal_Cancer": {
+                "Recommendations": [
+                    "Colonoscopy every 5 years starting at age 40 for colorectal cancer risk management."
+                ],
+                "Evidence": [
+                    "Colonoscopy surveillance is recommended for colorectal cancer risk in ATM mutation carriers."
+                ]
+            }
         },
         "Frequency_of_Management": {
             "Frequency": "Annual for breast cancer, every 5 years for colorectal cancer",
