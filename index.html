@@ -5,43 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ATM Gene Risk and Management Dashboard</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header>
         <h1>ATM Gene Risk and Management Dashboard</h1>
     </header>
-    <div class="filters">
-        <select id="paperFilter">
-            <option value="All">All Papers</option>
-        </select>
-        <select id="cancerFilter">
-            <option value="All">All Cancer Types</option>
-        </select>
-        <input type="text" id="searchBar" placeholder="Search...">
-        <button id="filterBtn">Filter</button>
-        <button id="clearBtn">Clear Filters</button>
+    <section>
+        <div class="filters">
+            <select id="paperFilter">
+                <option value="All">All Papers</option>
+            </select>
+            <select id="cancerFilter">
+                <option value="All">All Cancer Types</option>
+            </select>
+            <input type="text" id="searchBar" placeholder="Search...">
+            <button id="filterBtn">Filter</button>
+            <button id="clearBtn">Clear Filters</button>
+        </div>
         <div class="column-toggles">
             <label><input type="checkbox" class="column-toggle" data-column="authors" checked> Authors</label>
             <label><input type="checkbox" class="column-toggle" data-column="evidence-cancer" checked> Evidence for Cancer</label>
             <label><input type="checkbox" class="column-toggle" data-column="evidence-management" checked> Evidence for Management</label>
         </div>
-    </div>
-    <canvas id="riskChart"></canvas>
-    <table id="riskTable">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Cancer Type</th>
-                <th>Risk</th>
-                <th>Medical Actions/Management</th>
-                <th>Evidence for Cancer</th>
-                <th>Evidence for Management</th>
-                <th>Authors</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
+        <canvas id="riskChart"></canvas>
+        <table id="riskTable">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Cancer Type</th>
+                    <th>Risk</th>
+                    <th>Management Recommendations</th>
+                    <th>Evidence for Cancer</th>
+                    <th>Evidence for Management</th>
+                    <th>Authors</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
