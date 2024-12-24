@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.riskChart = null;
 
     // Load JSON data
-    fetch("ATM annotations.json")
+    fetch("ATM_annotations.json")
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -33,11 +33,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
             types.forEach(type => {
                 const management = Medical_Actions_Management[type] || {};
+                const recommendations = management.Recommendations?.length
+                    ? management.Recommendations.join("; ")
+                    : "No recommendations";
                 formatted.push({
                     Title,
                     Cancer: type,
                     Risk: risks[type] || "Unknown",
-                    Management: management.Recommendations?.join("; ") || "No recommendations",
+                    Management: recommendations,
                     EvidenceCancer: cancerEvidence.join("; ") || "No evidence provided",
                     EvidenceManagement: management.Evidence?.join("; ") || "No evidence provided",
                     Authors: Authors?.join(", ") || "No authors listed"
