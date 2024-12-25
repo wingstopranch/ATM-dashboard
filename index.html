@@ -13,34 +13,26 @@
     </header>
     <main>
         <div class="filters">
-            <label for="paperFilter">All Papers:</label>
-            <select id="paperFilter">
-                <option value="All">All</option>
-            </select>
-
-            <label for="cancerFilter">All Cancer Types:</label>
-            <select id="cancerFilter">
-                <option value="All">All</option>
-            </select>
-
-            <input type="text" id="searchBar" placeholder="Search...">
-
-            <button id="filterBtn">Filter</button>
-            <button id="clearBtn">Clear Filters</button>
+            <div>
+                <label for="paperFilter">All Papers:</label>
+                <select id="paperFilter">
+                    <option value="All">All</option>
+                </select>
+            </div>
+            <div>
+                <label for="cancerFilter">All Cancer Types:</label>
+                <select id="cancerFilter">
+                    <option value="All">All</option>
+                </select>
+            </div>
+            <div>
+                <button id="filterBtn">Filter</button>
+                <button id="clearBtn">Clear Filters</button>
+            </div>
         </div>
-
-        <div class="column-toggles">
-            <label><input type="checkbox" data-column="title" class="column-toggle" checked> Title</label>
-            <label><input type="checkbox" data-column="cancer" class="column-toggle" checked> Cancer Type</label>
-            <label><input type="checkbox" data-column="risk" class="column-toggle" checked> Risk</label>
-            <label><input type="checkbox" data-column="management" class="column-toggle" checked> Management Recommendations</label>
-            <label><input type="checkbox" data-column="evidence-cancer" class="column-toggle" checked> Evidence for Cancer</label>
-            <label><input type="checkbox" data-column="evidence-management" class="column-toggle" checked> Evidence for Management</label>
-            <label><input type="checkbox" data-column="authors" class="column-toggle" checked> Authors</label>
+        <div class="chart-container">
+            <canvas id="riskChart"></canvas>
         </div>
-
-        <canvas id="riskChart"></canvas>
-
         <table id="riskTable">
             <thead>
                 <tr>
@@ -53,9 +45,7 @@
                     <th>Authors</th>
                 </tr>
             </thead>
-            <tbody>
-                <!-- Dynamic rows will be inserted here -->
-            </tbody>
+            <tbody></tbody>
         </table>
     </main>
     <script src="app.js"></script>
