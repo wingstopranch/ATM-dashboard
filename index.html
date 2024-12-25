@@ -3,61 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATM Gene Dashboard</title>
+    <title>ATM Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header>
-        <h1>ATM Gene Mutation Dashboard</h1>
-    </header>
-
-    <section>
-        <div class="filters">
-            <label for="paperFilter">Filter by Paper:</label>
+        <h1>ATM Gene Cancer Risk Dashboard</h1>
+        <div id="filters">
             <select id="paperFilter">
-                <option value="All">All</option>
+                <option value="All">All Papers</option>
             </select>
-
-            <label for="cancerFilter">Filter by Cancer Type:</label>
             <select id="cancerFilter">
-                <option value="All">All</option>
+                <option value="All">All Cancer Types</option>
             </select>
-
-            <button id="filterBtn">Apply Filters</button>
-            <button id="clearBtn">Clear Filters</button>
+            <button id="filterBtn">Filter</button>
+            <button id="clearBtn">Clear</button>
         </div>
-    </section>
-
-    <section>
-        <div class="search-bar">
-            <label for="searchBar">Search:</label>
-            <input type="text" id="searchBar" placeholder="Search...">
-        </div>
-    </section>
-
-    <section>
+    </header>
+    <main>
+        <input type="text" id="searchBar" placeholder="Search...">
         <table id="riskTable">
             <thead>
                 <tr>
-                    <th class="title">Paper Title</th>
-                    <th class="cancer">Cancer Type</th>
-                    <th class="risk">Risk</th>
-                    <th class="management">Management Recommendations</th>
-                    <th class="evidence-cancer">Evidence for Cancer Risk</th>
-                    <th class="evidence-management">Evidence for Management</th>
+                    <th>Title</th>
+                    <th>Cancer Type</th>
+                    <th>Risk</th>
+                    <th>Management Recommendations</th>
+                    <th>Evidence for Cancer</th>
+                    <th>Evidence for Management</th>
+                    <th>Authors</th>
                 </tr>
             </thead>
-            <tbody>
-                <!-- Table rows will be dynamically populated -->
-            </tbody>
+            <tbody></tbody>
         </table>
-    </section>
-
-    <section>
         <canvas id="riskChart"></canvas>
-    </section>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </main>
     <script src="app.js"></script>
 </body>
 </html>
