@@ -26,15 +26,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const formatted = [];
         for (const [paper, details] of Object.entries(data)) {
             const { Title, Cancer, Risk, Medical_Actions_Management, Authors } = details;
-            const types = Cancer.Types || [];
-            const risks = Risk.Percentages || {};
-            const cancerEvidence = Cancer.Evidence || [];
+            const types = Cancer?.Types || [];
+            const risks = Risk?.Percentages || {};
+            const cancerEvidence = Cancer?.Evidence || [];
 
             types.forEach(type => {
-                const management = (Medical_Actions_Management && Medical_Actions_Management[type]) || {};
+                const management = Medical_Actions_Management?.[type] || {};
                 formatted.push({
-                    Title,
-                    Cancer: type,
+                    Title: Title || "Unknown",
+                    Cancer: type || "Unknown",
                     Risk: risks[type] || "Unknown",
                     Management: management.Recommendations?.join("; ") || "No recommendations",
                     EvidenceCancer: cancerEvidence.join("; ") || "No evidence provided",
