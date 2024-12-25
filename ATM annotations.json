@@ -157,73 +157,73 @@
         "Notes": "Guidelines for including ATM mutations in genetic testing panels for hereditary breast cancer risk should be refined."
     }
 }
-    "Paper_3": {
-        "Title": "Health risks for ataxia-telangiectasia mutated heterozygotes",
-        "Authors": [
-            "N.J.H. van Os",
-            "N. Roeleveld",
-            "C.M.R. Weemaes",
-            "M.C.J. Jongmans",
-            "G.O. Janssens",
-            "A.M.R. Taylor",
-            "N. Hoogerbrugge"
-        ],
-        "Cancer": {
-            "Types": ["Breast Cancer", "Digestive Tract Cancers", "Colorectal Cancer"],
+   "Paper_3": {
+    "Title": "Health risks for ataxia-telangiectasia mutated heterozygotes",
+    "Authors": [
+        "N.J.H. van Os",
+        "N. Roeleveld",
+        "C.M.R. Weemaes",
+        "M.C.J. Jongmans",
+        "G.O. Janssens",
+        "A.M.R. Taylor",
+        "N. Hoogerbrugge"
+    ],
+    "Cancer": {
+        "Types": ["Breast Cancer", "Digestive Tract Cancers", "Colorectal Cancer"],
+        "Evidence": [
+            "ATM mutation carriers have an increased risk of developing breast cancer (RRwomen 3.0, 95% CI 2.1–4.5), cancers of the digestive tract, and colorectal cancer."
+        ]
+    },
+    "Risk": {
+        "Percentages": {
+            "Breast Cancer": "3x increased risk for female ATM mutation carriers",
+            "Digestive Tract Cancers": "Moderately increased risk",
+            "Colorectal Cancer": "2.5x increased risk for ATM carriers"
+        },
+        "Evidence": [
+            "Based on meta-analysis, female carriers of the ATM c.7271T>G mutation show a significantly elevated breast cancer risk.",
+            "ATM heterozygotes have a relative risk of colorectal cancer of 2.54 (95% CI: 1.06–6.09)."
+        ]
+    },
+    "Medical_Actions_Management": {
+        "Breast_Cancer": {
+            "Recommendations": [
+                "Breast cancer screening starting at 25 years for high-risk ATM mutation carriers."
+            ],
             "Evidence": [
-                "ATM mutation carriers have an increased risk of developing breast cancer (RRwomen 3.0, 95% CI 2.1–4.5), cancers of the digestive tract, and colorectal cancer."
+                "All female ATM c.7271T>G mutation carriers from 25 years of age onwards should be offered intensified surveillance programs for breast cancer."
             ]
         },
-        "Risk": {
-            "Percentages": {
-                "Breast Cancer": "3x increased risk for female ATM mutation carriers",
-                "Digestive Tract Cancers": "Moderately increased risk",
-                "Colorectal Cancer": "2.5x increased risk for ATM carriers"
-            },
+        "Colorectal_Cancer": {
+            "Recommendations": [
+                "Colonoscopy every 5 years starting at age 40 for colorectal cancer risk management."
+            ],
             "Evidence": [
-                "Based on meta-analysis, female carriers of the ATM c.7271T>G mutation show a significantly elevated breast cancer risk.",
-                "ATM heterozygotes have a relative risk of colorectal cancer of 2.54 (95% CI: 1.06–6.09)."
-            ]
-        },
-        "Medical_Actions_Management": {
-            "Breast_Cancer": {
-                "Recommendations": [
-                    "Breast cancer screening starting at 25 years for high-risk ATM mutation carriers."
-                ],
-                "Evidence": [
-                    "All female ATM c.7271T>G mutation carriers from 25 years of age onwards should be offered intensified surveillance programs for breast cancer."
-                ]
-            },
-            "Colorectal_Cancer": {
-                "Recommendations": [
-                    "Colonoscopy every 5 years starting at age 40 for colorectal cancer risk management."
-                ],
-                "Evidence": [
-                    "Colonoscopy surveillance is recommended for colorectal cancer risk in ATM mutation carriers."
-                ]
-            }
-        },
-        "Frequency_of_Management": {
-            "Frequency": "Annual for breast cancer, every 5 years for colorectal cancer",
-            "Evidence": [
-                "Annual MRIs for breast cancer, and 5-yearly colonoscopy for colorectal cancer in ATM mutation carriers."
-            ]
-        },
-        "Age_Range_of_Management": {
-            "Breast_Cancer": "Starting at age 25",
-            "Colorectal_Cancer": "Starting at age 40",
-            "Evidence": []
-        },
-        "Comments": [
-            "ATM mutation carriers require tailored surveillance based on the specific cancer risks associated with the mutation subtype."
-        ],
-        "Therapeutic_Implications": {
-            "Implications": "Potential benefits of using targeted therapies like PARP inhibitors for ATM-related cancers.",
-            "Evidence": [
-                "Emerging data suggest that ATM-related cancers may respond to DNA repair-targeting therapies."
+                "Colonoscopy surveillance is recommended for colorectal cancer risk in ATM mutation carriers."
             ]
         }
     },
+    "Frequency_of_Management": {
+        "Frequency": "Annual for breast cancer, every 5 years for colorectal cancer",
+        "Evidence": [
+            "Annual MRIs for breast cancer, and 5-yearly colonoscopy for colorectal cancer in ATM mutation carriers."
+        ]
+    },
+    "Age_Range_of_Management": {
+        "Breast_Cancer": "Starting at age 25",
+        "Colorectal_Cancer": "Starting at age 40",
+        "Evidence": []
+    },
+    "Comments": [
+        "ATM mutation carriers require tailored surveillance based on the specific cancer risks associated with the mutation subtype."
+    ],
+    "Therapeutic_Implications": {
+        "Implications": "Potential benefits of using targeted therapies like PARP inhibitors for ATM-related cancers.",
+        "Evidence": [
+            "Emerging data suggest that ATM-related cancers may respond to DNA repair-targeting therapies."
+        ]
+    }
+}
     "Paper_4": {
         "Title": "Incidence of cancer in ATM mutation carriers",
         "Authors": ["Deborah Thompson", "Silvia Duedal", "Jennifer Kirner"],
