@@ -318,6 +318,28 @@
             "Evidence": [
                 "Risk estimates are derived from aggregated data across multiple familial and population-based studies."
             ]
+        },
+        "Medical_Actions_Management": {
+            "Breast_Cancer": {
+                "Recommendations": [
+                    "Annual MRI and mammogram screening starting at age 30."
+                ],
+                "Evidence": [
+                    "Early detection strategies recommended for moderate-risk mutation carriers."
+                ]
+            },
+            "Lung_Cancer": {
+                "Recommendations": [],
+                "Evidence": [
+                    "No specific management strategies identified."
+                ]
+            }
+        },
+        "Therapeutic_Implications": {
+            "Implications": "Further research is needed to explore targeted therapies for ATM-related lung cancer.",
+            "Evidence": [
+                "Insights into ATM-related cancer pathways could lead to novel therapeutic strategies."
+            ]
         }
     }
 }
