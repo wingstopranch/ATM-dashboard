@@ -4,7 +4,12 @@ document.addEventListener("DOMContentLoaded", () => {
     let riskChart = null;
 
     fetch("ATM annotations.json")
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
         .then(data => {
             originalData = formatData(data);
             filteredData = [...originalData];
@@ -12,6 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
             createTable(filteredData);
             createChart(filteredData);
             setupFilters();
+            setupColumnToggle();
+            setupSearch();
         })
         .catch(error => console.error("Error loading JSON file:", error));
 
@@ -21,16 +28,16 @@ document.addEventListener("DOMContentLoaded", () => {
             const { Title, Cancer, Risk, Medical_Actions_Management, Authors } = details;
             const types = Cancer.Types || [];
             const risks = Risk.Percentages || {};
-            const evidenceForCancer = Cancer.Evidence || [];
+            const cancerEvidence = Cancer.Evidence || [];
 
             types.forEach(type => {
-                const management = Medical_Actions_Management[type.replace(/\s/g, "_")] || {};
+                const management = (Medical_Actions_Management && Medical_Actions_Management[type]) || {};
                 formatted.push({
                     Title,
                     Cancer: type,
                     Risk: risks[type] || "Unknown",
                     Management: management.Recommendations?.join("; ") || "No recommendations",
-                    EvidenceCancer: evidenceForCancer.join("; ") || "No evidence provided",
+                    EvidenceCancer: cancerEvidence.join("; ") || "No evidence provided",
                     EvidenceManagement: management.Evidence?.join("; ") || "No evidence provided",
                     Authors: Authors?.join(", ") || "No authors listed"
                 });
@@ -51,13 +58,13 @@ document.addEventListener("DOMContentLoaded", () => {
         data.forEach(item => {
             const row = document.createElement("tr");
             row.innerHTML = `
-                <td>${item.Title}</td>
-                <td>${item.Cancer}</td>
-                <td>${item.Risk}</td>
-                <td>${item.Management}</td>
-                <td>${item.EvidenceCancer}</td>
-                <td>${item.EvidenceManagement}</td>
-                <td>${item.Authors}</td>
+                <td class="title">${item.Title}</td>
+                <td class="cancer">${item.Cancer}</td>
+                <td class="risk">${item.Risk}</td>
+                <td class="management">${item.Management}</td>
+                <td class="evidence-cancer">${item.EvidenceCancer}</td>
+                <td class="evidence-management">${item.EvidenceManagement}</td>
+                <td class="authors">${item.Authors}</td>
             `;
             tbody.appendChild(row);
         });
@@ -68,12 +75,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const labels = data.map(item => item.Cancer);
         const risks = data.map(item => parseFloat(item.Risk.match(/\d+/)?.[0]) || 0);
 
-        if (riskChart) riskChart.destroy();
+        if (riskChart) {
+            riskChart.destroy();
+        }
 
         riskChart = new Chart(ctx, {
             type: "bar",
             data: {
-                labels,
+                labels: labels,
                 datasets: [{
                     label: "Risk Percentage",
                     data: risks,
@@ -87,7 +96,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 scales: {
                     y: {
                         beginAtZero: true,
-                        title: { display: true, text: "Risk Percentage" }
+                        title: {
+                            display: true,
+                            text: "Risk Percentage"
+                        }
                     }
                 }
             }
@@ -117,21 +129,57 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function setupFilters() {
-        document.getElementById("filterBtn").addEventListener("click", () => {
+        const filterBtn = document.getElementById("filterBtn");
+        const clearBtn = document.getElementById("clearBtn");
+
+        filterBtn.addEventListener("click", () => {
             const paperValue = document.getElementById("paperFilter").value;
             const cancerValue = document.getElementById("cancerFilter").value;
 
             filteredData = originalData.filter(item => {
-                return (paperValue === "All" || item.Title === paperValue) &&
-                    (cancerValue === "All" || item.Cancer === cancerValue);
+                const paperMatch = paperValue === "All" || item.Title === paperValue;
+                const cancerMatch = cancerValue === "All" || item.Cancer === cancerValue;
+                return paperMatch && cancerMatch;
             });
 
             createTable(filteredData);
             createChart(filteredData);
         });
 
-        document.getElementById("clearBtn").addEventListener("click", () => {
+        clearBtn.addEventListener("click", () => {
+            document.getElementById("searchBar").value = "";
+            document.getElementById("paperFilter").value = "All";
+            document.getElementById("cancerFilter").value = "All";
             filteredData = [...originalData];
+            createTable(filteredData);
+            createChart(filteredData);
+        });
+    }
+
+    function setupColumnToggle() {
+        const toggles = document.querySelectorAll(".column-toggle");
+        toggles.forEach(toggle => {
+            toggle.addEventListener("change", () => {
+                const columnClass = toggle.dataset.column;
+                const isVisible = toggle.checked;
+                document.querySelectorAll(`.${columnClass}`).forEach(cell => {
+                    cell.style.display = isVisible ? "" : "none";
+                });
+            });
+        });
+    }
+
+    function setupSearch() {
+        const searchBar = document.getElementById("searchBar");
+        searchBar.addEventListener("input", () => {
+            const searchTerm = searchBar.value.trim().toLowerCase();
+            filteredData = originalData.filter(item =>
+                item.Cancer.toLowerCase().includes(searchTerm) ||
+                item.Management.toLowerCase().includes(searchTerm) ||
+                item.EvidenceCancer.toLowerCase().includes(searchTerm) ||
+                item.EvidenceManagement.toLowerCase().includes(searchTerm) ||
+                item.Title.toLowerCase().includes(searchTerm)
+            );
             createTable(filteredData);
             createChart(filteredData);
         });
