@@ -85,7 +85,7 @@
             "Notes": "Guidelines for inclusion of ATM mutations in gene panels for pancreatic and breast cancer should be referenced."
         }
     },
-    "Paper_2": {
+     "Paper_2": {
         "Title": "Rare variants in the ATM gene and risk of breast cancer",
         "Authors": [
             "David E. Goldgar",
@@ -142,11 +142,22 @@
         "Comments": [
             "The ATM c.7271T>G mutation is associated with a high penetrance of breast cancer and may require BRCA-level surveillance protocols."
         ],
+        "Evidence_for_Cancer": [
+            "Recent meta-analyses support that ATM mutations elevate breast cancer risk, particularly in specific pathogenic variants.",
+            "ATM mutations are associated with disrupted DNA damage repair pathways, increasing cancer susceptibility."
+        ],
         "Therapeutic_Implications": {
             "Implications": "Potential benefits of PARP inhibitors for ATM-mutated cancers, though more research is needed.",
             "Evidence": [
                 "DNA repair pathway-targeted therapies are being explored for patients with ATM-related cancers."
             ]
+        },
+        "ACMG_Guidelines": {
+            "Mentioned": false,
+            "Notes": "Guidelines for including ATM mutations in genetic testing panels for hereditary breast cancer risk should be refined."
+        }
+    }
+    ]
         }
     },
     "Paper_3": {
